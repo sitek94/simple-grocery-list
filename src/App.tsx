@@ -1,10 +1,27 @@
-import React from 'react';
-import './App.css';
+import * as React from 'react';
+
+import GroceriesForm from './groceries-form';
 
 function App() {
+  const [groceries, setGroceries] = React.useState([
+    { icon: '🥦', name: 'Broccoli', amount: 10 },
+    { icon: '🥛', name: 'Milk', amount: 2 },
+  ]);
+
+  const addProduct = () => {};
+
   return (
     <div className="App">
-      Hello
+      <h1>Grocery List</h1>
+      <GroceriesForm onAdd={addProduct} />
+      <hr />
+      <ul>
+        {groceries.map(({ icon, name, amount }) => (
+          <li key={name}>
+            <span className="icon">{icon}</span> {name} x {amount}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
