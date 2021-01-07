@@ -8,7 +8,9 @@ function App() {
     { icon: '🥛', name: 'Milk', amount: 2 },
   ]);
 
-  const addProduct = () => {};
+  const addProduct = (...args: any) => {
+    console.log(args);
+  };
 
   return (
     <div className="App">
