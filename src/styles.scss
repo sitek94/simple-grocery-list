@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  padding: 30px;
+  background-color: #282c34;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.icon {
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+}
+
+/* FORM */
+.groceries-form {
+  max-width: 200px;
+}
+
+/* FORM CONTROL */
+.form-control {
+  margin-bottom: 8px;
+  
+  label {
+    margin-left: 12px;
+  }
+  
+  input {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #1b1e24;
+  }
+}
+
+/* SUBMIT BUTTON */
+.submit-btn {
+  margin: 5px 0 15px;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #1b1e24;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #12d43c;
+  }
+}
+
