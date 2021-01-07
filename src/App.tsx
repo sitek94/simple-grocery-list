@@ -18,7 +18,8 @@ function App() {
       <ul>
         {groceries.map(({ icon, name, amount }) => (
           <li key={name}>
-            <span className="icon">{icon}</span> {name} x {amount}
+            {icon ? <span className="icon">{icon}</span> : null}
+            {name} x {amount}
           </li>
         ))}
       </ul>

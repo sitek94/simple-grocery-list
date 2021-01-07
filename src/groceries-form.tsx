@@ -3,5 +3,21 @@ type GroceriesFormProps = {
 };
 
 export default function GroceriesForm({ onAdd }: GroceriesFormProps) {
-  return <div>Groceries Form</div>;
+  return (
+    <form className="groceries-form">
+      <div className="form-control inline">
+        <label>Icon</label>
+        <input type="text" />
+      </div>
+      <div className="form-control inline">
+        <label>Name</label>
+        <input type="text" />
+      </div>
+      <div className="form-control">
+        <label>Amount</label>
+        <input type="number" />
+      </div>
+      <input className="submit-btn" type="submit" value="Add" />
+    </form>
+  );
 }
