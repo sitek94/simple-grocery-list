@@ -1,38 +1,67 @@
 import * as React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 import GroceriesForm from './groceries-form';
 
 describe('GroceriesForm', () => {
   it('renders correctly', () => {
-    render(<GroceriesForm onAdd={() => {}} />);
+    const { getByText } = render(<GroceriesForm onAdd={() => {}} />);
 
-    expect(screen.getByText(/Icon/)).toBeInTheDocument();
-    expect(screen.getByText(/Name/)).toBeInTheDocument();
-    expect(screen.getByText(/Amount/)).toBeInTheDocument();
-    expect(screen.getByText(/Add/)).toBeInTheDocument();
+    expect(getByText(/Icon/)).toBeInTheDocument();
+    expect(getByText(/Name/)).toBeInTheDocument();
+    expect(getByText(/Amount/)).toBeInTheDocument();
+    expect(getByText(/Add/)).toBeInTheDocument();
   });
 
   it('calls the onAdd function with the form values', () => {
     const onAdd = jest.fn();
-    render(<GroceriesForm onAdd={onAdd} />);
+    const { getByLabelText, getByText } = render(
+      <GroceriesForm onAdd={onAdd} />
+    );
 
-    fireEvent.change(screen.getByLabelText('Icon'), {
+    fireEvent.change(getByLabelText('Icon'), {
       target: { value: '🍫' },
     });
-    fireEvent.change(screen.getByLabelText('Name'), {
+    fireEvent.change(getByLabelText('Name'), {
       target: { value: 'Chocolate' },
     });
-    fireEvent.change(screen.getByLabelText('Amount'), {
+    fireEvent.change(getByLabelText('Amount'), {
       target: { value: '5' },
     });
 
-    fireEvent.click(screen.getByText('Add'));
+    fireEvent.click(getByText('Add'));
 
     expect(onAdd).toBeCalledWith({
       icon: '🍫',
       name: 'Chocolate',
       amount: 5,
     });
+  });
+
+  it('cleans up the inputs', () => {
+    const onAdd = jest.fn();
+    const { getByLabelText, getByText } = render(
+      <GroceriesForm onAdd={onAdd} />
+    );
+
+    const iconInput = getByLabelText('Icon') as HTMLInputElement;
+    const nameInput = getByLabelText('Name') as HTMLInputElement;
+    const amountInput = getByLabelText('Amount') as HTMLInputElement;
+
+    fireEvent.change(iconInput, {
+      target: { value: '🍫' },
+    });
+    fireEvent.change(iconInput, {
+      target: { value: 'Chocolate' },
+    });
+    fireEvent.change(amountInput, {
+      target: { value: 5 },
+    });
+
+    fireEvent.click(getByText('Add'));
+
+    expect(iconInput.value).toBe('');
+    expect(nameInput.value).toBe('');
+    expect(amountInput.value).toBe('1');
   });
 });

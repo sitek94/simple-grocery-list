@@ -19,6 +19,9 @@ export default function GroceriesForm({ onAdd }: GroceriesFormProps) {
     e.preventDefault();
 
     onAdd({ icon, name, amount });
+    setIcon('');
+    setName('');
+    setAmount(1);
   };
 
   return (
@@ -30,6 +33,7 @@ export default function GroceriesForm({ onAdd }: GroceriesFormProps) {
           type="text"
           value={icon}
           onChange={(e) => setIcon(e.target.value)}
+          required
         />
       </div>
       <div className="form-control inline">
@@ -39,6 +43,7 @@ export default function GroceriesForm({ onAdd }: GroceriesFormProps) {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          required
         />
       </div>
       <div className="form-control">
@@ -48,6 +53,7 @@ export default function GroceriesForm({ onAdd }: GroceriesFormProps) {
           type="number"
           value={amount}
           onChange={(e) => setAmount(Number(e.target.value))}
+          required
         />
       </div>
       <input className="submit-btn" type="submit" value="Add" />
